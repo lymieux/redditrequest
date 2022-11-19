@@ -1,0 +1,78 @@
+Temporary file for steps of recreation:
+
+https://www.upwork.com/resources/how-to-make-discord-bot
+## Running
+
+### Getting API keys
+
+The script currently needs some API credentials from both Discord and Reddit.
+
+#### Discord Client ID
+
+1. Go to the Discord API portal:
+   https://discord.com/developers/applications
+
+2. Click "New Application" button on top right, name it anything
+
+3. In the newly created application, go to the "Bot" tab on the menu on the left
+
+4. Under "Build A Bot" there will be a token label with a Copy button.
+   Copy that token
+
+5. Set your environment variable `DISCORD_BOT_TOKEN=<YOUR_BOT_TOKEN>`
+
+#### Reddit ID and Secret
+
+1. Go to the Reddit app portal:
+   https://www.reddit.com/prefs/apps/
+
+2. Create a "script" type key and name it whatever
+
+3. Copy your Client ID (not labelled, but found in bold under the name of the script)
+   and the Client Secret (is labelled).
+
+4. Set environment variables `REDDIT_ID=<YOUR_CLIENT_ID>`
+   and the Client Secret as `REDDIT_SECRET=<YOUR_CLIENT_SECRET>`
+
+#### Storing credentials using dotenv
+
+Environment variables can be stored in a `.env` in the directory where the
+project is run. In the future, I may decide to use a configuration file instead.
+
+### Running the bot
+
+In the examples below, I assume that all API credentials are in their
+corresponding environment variables or in a `.env` file.
+
+#### Running Locally
+
+```sh
+git clone https://github.com/lemonase/pastabot.git
+cd pastabot
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 src/bot.py
+```
+
+#### Running with Docker
+
+Running with a `.env` file in the current directory:
+
+```sh
+docker run -d --env-file $(PWD)/.env jamesdixon/pastabot:latest
+```
+
+Running with environment variables:
+
+```sh
+docker run -d -e REDDIT_ID=<YOUR_ID> \
+              -e REDDIT_SECRET=<YOUR_SECRET> \
+              -e DISCORD_BOT_TOKEN=<YOUR_TOKEN> \
+              jamesdixon/pastabot
+```
+
+## Libraries used
+
+- [PRAW](https://github.com/praw-dev/praw)
+- [Discord.py](https://github.com/Rapptz/discord.py)
