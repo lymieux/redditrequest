@@ -1,2 +1,2 @@
-# pastabot
-A copypasta Discord Bot that fetches 
+# redditrequest
+A Discord Bot that fetches posts from subreddits

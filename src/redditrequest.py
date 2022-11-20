@@ -8,7 +8,7 @@ __version__ = "1.0.0-alpha"
 def get_args() -> argparse.Namespace:
     """Get necessary environment variables for running the script"""
     load_dotenv()  # load .env.template file for defaults in parser arguments
-    parser = argparse.ArgumentParser(prog=os.path.basename(__file__), description="A Discord copypasta bot")
+    parser = argparse.ArgumentParser(prog=os.path.basename(__file__), description="A Discord Bot that fetches posts from subreddits")
     parser.add_argument("--bot-token",
                         metavar="TOKEN",
                         type=str,
